@@ -1,4 +1,4 @@
-const con = require("./connection.js");
+const connection = require("./connection.js");
 
 // helper function for SQL syntax
 function printQuestionMarks(num) {
@@ -30,10 +30,10 @@ function printQuestionMarks(num) {
  }
 
 const orm = {
-// method to selectAll
-   selectAll: function(tableInput, cb) {
+// method to all
+   all: function(tableInput, cb) {
       let queryString = `SELECT * FROM ${tableInput};`;
-      RTCPeerConnection.query(queryString, function(err, res) { 
+      connection.query(queryString, function(err, res) { 
          if (err) {
             throw err;
          }
@@ -41,8 +41,8 @@ const orm = {
       });
    },
 
-// method to insertOne
-   insertOne: function(table, cols, vals, cb) {
+// method to create
+   create: function(table, cols, vals, cb) {
       let queryString = `INSERT INTO ${table}`;
 
       queryString += " (";
@@ -62,8 +62,8 @@ const orm = {
       });
    },
 
-// method to updateOne
-   updateOne: function(table, objColVals, condition, cb) {
+// method to update
+   update: function(table, objColVals, condition, cb) {
       let queryString = `UPDATE ${table}`;
 
       queryString += " SET ";
@@ -79,7 +79,22 @@ const orm = {
 
          cb(result);
       });
-   }
+   },
+
+   // method to delete
+   delete: function(table, condition, cb) {
+      var queryString = "DELETE FROM " + table;
+      queryString += " WHERE ";
+      queryString += condition;
+  
+      connection.query(queryString, function(err, result) {
+        if (err) {
+          throw err;
+        }
+  
+        cb(result);
+      });
+    }
 };
 
 module.exports = orm;

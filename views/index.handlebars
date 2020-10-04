@@ -1,4 +1,4 @@
-{{!-- set up to have the template tha thandlebars can render onto --}}
+{{!-- set up to have the template tha handlebars can render onto --}}
 
 <h1>Eat Dat Burger!</h1>
 
@@ -7,17 +7,17 @@
 <ul>
   {{#each burger_name}}
     {{#unless devoured}}
-      {{> cats/cat-block sleep=true}}
+     {{>burgers/burgerblock devoured=true}}
     {{/unless}}
   {{/each}}
 </ul>
 
-<h2>Devoured Begers!</h2>
+<h2>Devoured Burgers!</h2>
 
 <ul>
-  {{#each cats}}
-    {{#if sleepy}}
-      {{> cats/cat-block sleep=false}}
+  {{#each burgers}}
+    {{#if devoured}}
+      {{>burgers/burgerblock devoured=false}}
     {{/if}}
   {{/each}}
 </ul>
@@ -26,15 +26,15 @@
 <form class="create-form">
 
   <div class="form-group">
-    <label for="ca">Cat Name:</label>
-    <input type="text" id="ca" name="name">
+    <label for="bu">Burger:</label>
+    <input type="text" id="bu" name="name">
   </div>
 
   <div class="form-group">
-    <label for="sleepy">Sleepy?</label><br>
-    <input type="radio" name="sleepy" value="1" checked> Sleepy!<br>
-    <input type="radio" name="sleepy" value="0"> Awake
+    <label for="devoured">Devoured?</label><br>
+    <input type="radio" name="devoured" value="1" checked> devoured!<br>
+    <input type="radio" name="devoured" value="0"> Undevoured
   </div>
 
-  <button type="submit" class="create-form">Add Dat Burger!</button>
+  <button type="submit">Add Dat Burger!</button>
 </form>
