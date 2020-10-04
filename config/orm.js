@@ -32,7 +32,7 @@ function printQuestionMarks(num) {
 const orm = {
 // method to all
    all: function(tableInput, cb) {
-      let queryString = `SELECT * FROM ${tableInput};`;
+      let queryString = `SELECT * FROM ${tableInput}`;
       connection.query(queryString, function(err, res) { 
          if (err) {
             throw err;
